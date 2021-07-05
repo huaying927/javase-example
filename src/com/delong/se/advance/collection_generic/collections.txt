@@ -1,0 +1,91 @@
+Collection(根接口)   JUC(java.util.concurrent)
+    --List(接口):有序 可以添加重复元素
+      --Vector:是同步的
+        是动态数组，是同步的，同步意味着线程安全。数组是一种典型的顺序存储结构，顺序存储结构
+        在内存中会分配连续的存储空间，在查询的时候平均复杂度低
+        效率高；在插入或删除时平均复杂度高效率低
+      --ArrayList: 是异步的
+        是动态数组，是异步的，异步意味着线程不安全。数组是一种典型的顺序存储结构，顺序存储结构
+        在内存中会分配连续的存储空间，在查询的时候平均复杂度低
+        效率高；在插入或删除时平均复杂度高效率低
+      --LinkedList：是异步的
+        是双链式存储结构，是异步的，异步意味着线程不安全。双链式存储结构
+        在内存中不会分配连续的存储空间，在查询的时候平均复杂度高效率低；
+        在插入或删除时平均复杂度低效率高
+    --Set(接口)：无序 不可以添加重复元素
+      --HashSet
+      --SortedSet(接口)
+        --NavigableSet(接口)
+          --TreeSet:树状结构的集合，它是有序的，但不能添加重复元素
+
+Map：是映射，是基于键值对的
+   --Hashtable:是同步的
+   --HashMap:
+   --SortedMap(接口):
+     --NavigableMap(接口):
+       --TreeMap
+
+Collections(工具类)：
+   --sort
+   --reverse
+   --shuffle
+
+为了提高查找速度，Collection中提供了迭代器(Iterator):
+Enumeration: 一般情况下迭代同步的集合类型(Vector Hashtable)
+Iterator: 一般迭代异步的集合类型(ArrayList LinkedList HashSet TreeSet)
+ListIterator(书上没有): 只能迭代List
+
+
+面试题：
+1. 影响平均复杂度的因素是：时间复杂度和空间复杂度
+2. Vector(Hashtable、StringBuffer)和ArrayList(HashMap、StringBuilder)的区别：
+   Vector(Hashtable、StringBuffer)是同步的，同步意味着线程安全，但效率低
+   ArrayList(HashMap、StringBuilder)是异步的，异步意味着线程不安全，但效率高
+3. ArrayList和LinkedList的区别：
+   ArrayList:是顺序存储结构，在内存中会分配连续的存储空间，在查询的时候平均复杂度低
+             效率高；在插入或删除时平均复杂度高效率低
+   LinkedList:是双链式存储结构，在内存中不会分配连续的存储空间，在查询的时候平均复杂度高
+              效率低；在插入或删除时平均复杂度低效率高
+   总结： ArrayList查询效率高，反之低；LinkedList与ArrayList相反。
+4. HashSet和HashMap的区别：
+   HashSet：是由HashMap实现的
+   HashMap: 在JDK1.6，JDK1.7中，HashMap采用位桶+链表实现，即使用链表处理冲突，
+                       同一hash值的链表都存储在一个链表里。但是当位于一个桶中的元素较多，
+                       即hash值相等的元素较多时，通过key值依次查找的效率较低。而JDK1.8中，
+                       HashMap采用位桶+链表+红黑树实现，当链表长度超过阈(yu)值（8）时，将链表
+                       转换为红黑树，这样大大减少了查找时间。
+               简单说下HashMap的实现原理：
+                       首先有一个每个元素都是链表（可能表述不准确）的数组，当添加一个元素（key-value）
+                       时，就首先计算元素key的hash值，以此确定插入数组中的位置，但是可能存在同一hash值
+                       的元素已经被放在数组同一位置了，这时就添加到同一hash值的元素的后面，他们在数组的
+                       同一位置，但是形成了链表，同一各链表上的Hash值是相同的，所以说数组存放的是链表。
+                       而当链表长度太长时，链表就转换为红黑树，这样大大提高了查找的效率。
+
+                       当链表数组的容量超过初始容量的0.75时，再散列将链表数组扩大2倍，把原链表数组的搬移
+                       到新的数组中
+
+5. TreeSet(TreeMap)： 底层结构是红黑树
+   红黑树的特性:
+   (1)每个节点或者是黑色，或者是红色。
+   (2)根节点是黑色。
+   (3)每个叶子节点（NIL）是黑色。 [注意：这里叶子节点，是指为空(NIL或NULL)的叶子节点！]
+   (4)如果一个节点是红色的，则它的子节点必须是黑色的。
+   (5)从一个节点到该节点的子孙节点的所有路径上包含相同数目的黑节点。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

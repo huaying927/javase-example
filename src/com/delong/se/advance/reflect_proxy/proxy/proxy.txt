@@ -1,0 +1,37 @@
+Proxy Pattern(代理模式): 对某种类的功能的增强
+1.静态代理：在编译阶段完成
+2.动态代理(Spring AOP的默认实现)：在运行时阶段完成
+3.代理模式的角色：
+  静态代理：
+  (1)抽象主题角色：标准的设计模式静态代理是通过抽象类来实现
+     抽象主题角色是要达到的目标
+  (2)真实主题角色:要继承抽象主题角色，抽象主题角色是要达到的目标是由
+     真实主题角色实现
+  (3)代理主题角色：要继承抽象主题角色，是代替真实主题角色的类
+
+  动态代理：动态代理只能代理接口
+    (1)抽象主题角色：标准的设计模式静态代理是通过接口来实现
+       抽象主题角色是要达到的目标
+    (2)真实主题角色:要实现抽象主题角色，抽象主题角色是要达到的目标是由
+       真实主题角色实现
+    (3)代理主题角色：要实现InvocationHandler的接口，是用Proxy类代
+       替真实主题角色的类实现的功能
+
+
+
+
+Decorator Pattern(装饰模式):对某种类的功能的增强
+BufferedReader bis = new BufferedReader(
+          new InputStreamReader(
+                new DataInputStream(
+                        new BufferedInputStream(
+                            new FileInputStream(new File("")))));
+
+
+PrintWriter pw = new PrintWriter(
+    new BufferedWriter(
+          new OutputStreamWriter(
+                new DataOutputStream(
+                        new BufferedOutputStream(
+                            new FileOutputStream(new File("")
+                            )))));
